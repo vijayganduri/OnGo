@@ -15,5 +15,6 @@
     <string name="font_regular">Roboto-Regular.ttf</string>
     <string name="font_thin">Roboto-Thin.ttf</string>
     
+    <string name="nearby_cabs">Cabs Nearby</string>
     
 </resources>

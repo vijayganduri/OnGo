@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true" >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent" >
+        android:orientation="vertical" >
 
         <include layout="@layout/main_toolbar" />
 
@@ -17,20 +18,221 @@
             android:id="@+id/listview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/main_toolbar"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@android:color/transparent"
             android:dividerHeight="3dp" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#111"
-        android:orientation="horizontal" >
+        android:layout_gravity="left|start"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/sedan_layout"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical" >
+
+        <com.vijayganduri.utils.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="15dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="CABS NEARBY"
+            android:textColor="@color/color_secondary_text"
+            android:textSize="18sp"
+            app:customTypeface="@string/font_regular" />
+
+        <LinearLayout
+            android:id="@+id/sedan_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@color/sedan_layout"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Sedan"
+                android:textColor="@color/color_primary_text"
+                android:textSize="25sp"
+                app:customTypeface="@string/font_regular" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/sedan_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_rect1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="eta"
+                android:textColor="@color/rounded1"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/sedan_kms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rect1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="km"
+                android:textColor="@color/rounded1"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_cabs" />
+
+        <LinearLayout
+            android:id="@+id/cab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@color/cab_layout"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Mini"
+                android:textColor="@color/color_primary_text"
+                android:textSize="25sp"
+                app:customTypeface="@string/font_regular" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/cab_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_rect2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="eta"
+                android:textColor="@color/rounded2"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/cab_kms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rect2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="km"
+                android:textColor="@color/rounded2"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_cabs" />
+
+        <LinearLayout
+            android:id="@+id/auto_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@color/auto_layout"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Auto"
+                android:textColor="@color/color_primary_text"
+                android:textSize="25sp"
+                app:customTypeface="@string/font_regular" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/auto_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_rect3"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="eta"
+                android:textColor="@color/rounded3"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+
+            <com.vijayganduri.utils.CustomFontTextView
+                android:id="@+id/auto_kms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rect3"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:text="km"
+                android:textColor="@color/rounded3"
+                android:textSize="15sp"
+                app:customTypeface="@string/font_light" />
+        </LinearLayout>
+
+        <com.vijayganduri.utils.CustomFontButton
+            android:id="@+id/book"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/login_btn_selector"
+            android:padding="5dp"
+            android:text="BOOK"
+            android:textColor="@color/text_soft_black"
+            android:textSize="17sp"
+            app:customTypeface="@string/font_regular" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

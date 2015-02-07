@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.vijayganduri.olaappathon.ongo.AppConstants;
@@ -23,7 +24,9 @@ import com.vijayganduri.olaappathon.ongo.R;
 import com.vijayganduri.olaappathon.ongo.adapter.PlacesListAdapter;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.PlacesResponse;
+import com.vijayganduri.olaappathon.ongo.model.RidesResponse;
 import com.vijayganduri.olaappathon.ongo.rest.HttpJsonListener;
+import com.vijayganduri.utils.PreferencesUtils;
 
 public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
@@ -34,6 +37,15 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
 	private ListView listview;
 	private PlacesListAdapter adapter;
+	
+	private TextView sedanKms;
+	private TextView sedaneat;
+	private TextView cabKms;
+	private TextView cabeat;
+	private TextView autoKms;
+	private TextView autoeat;
+	
+	private String userId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +55,26 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 		setupStatusBar();
 		setupToolbar();	
 		
+		sedanKms = (TextView)findViewById(R.id.sedan_kms);
+		sedaneat = (TextView)findViewById(R.id.sedan_eat);
+		cabKms = (TextView)findViewById(R.id.cab_kms);
+		cabeat = (TextView)findViewById(R.id.cab_eat);
+		autoKms = (TextView)findViewById(R.id.auto_kms);
+		autoeat = (TextView)findViewById(R.id.auto_eat);
+		
 		listview = (ListView)findViewById(R.id.listview);
 		listview.setOnItemClickListener(this);
+		
+		userId = PreferencesUtils.getUserID(this);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name) {};
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.nearby_cabs, R.string.app_name) {};
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		getplaces();
+		getNearbyCabInfo();
 	}
 
 	private void getplaces(){
@@ -71,6 +93,21 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 				if(response.getPlaces()!=null){
 					adapter.addAllItems(response.getPlaces());
 				}
+			}
+
+			@Override
+			public void onFailure(String error) {
+				Log.e(TAG, error);
+			}
+		});
+	}
+	
+	private void getNearbyCabInfo(){
+		restUtils.getCabInfo(userId, "17.487136", "78.388187", new HttpJsonListener<RidesResponse>() {
+
+			@Override
+			public void onSuccess(RidesResponse response) {
+				
 			}
 
 			@Override

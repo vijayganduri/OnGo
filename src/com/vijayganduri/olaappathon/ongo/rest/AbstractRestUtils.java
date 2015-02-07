@@ -13,5 +13,7 @@ public abstract class AbstractRestUtils {
 	public abstract void doLogin(String email, String password, HttpJsonListener<LoginResponse> listener);
 
 	public abstract void getRides(String userid, HttpJsonListener<RidesResponse> listener);
+	
+	public abstract void getCabInfo(String userid, String lat, String lng, HttpJsonListener<RidesResponse> listener);
 
 }

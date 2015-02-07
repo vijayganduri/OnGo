@@ -17,7 +17,6 @@
         android:paddingRight="20dp"
         android:paddingTop="15dp" >
 
-
         <com.makeramen.RoundedImageView
             android:id="@+id/place_img"
             android:layout_width="175dp"
@@ -30,14 +29,13 @@
             app:corner_radius="100dip"
             app:round_background="true" />
 
-
         <com.vijayganduri.utils.CustomFontTextView
             android:id="@+id/item_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:paddingTop="15dp"
             android:maxLines="3"
+            android:paddingTop="15dp"
             android:text="name"
             android:textColor="@android:color/white"
             android:textSize="25sp"
@@ -56,8 +54,7 @@
     </LinearLayout>
 
     <include layout="@layout/transparent_main_toolbar" />
-    
-    
+
 
     <com.vijayganduri.utils.CustomFontButton
         android:id="@+id/book"

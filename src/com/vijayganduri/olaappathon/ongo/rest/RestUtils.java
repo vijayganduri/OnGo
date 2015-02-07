@@ -136,6 +136,47 @@ public class RestUtils extends AbstractRestUtils {
 	}
 
 	@Override
+	public void getCabInfo(String userid, String lat, String lng,
+			final HttpJsonListener<RidesResponse> listener) {
+
+		List<BasicNameValuePair> list = new ArrayList<BasicNameValuePair>();
+		list.add(new BasicNameValuePair("user_id", userid));
+		list.add(new BasicNameValuePair("enable_new_state","true"));
+		list.add(new BasicNameValuePair("enable_auto","true"));
+		list.add(new BasicNameValuePair("enable_marketing","true"));
+		list.add(new BasicNameValuePair("location_type","CUSTOM"));
+		list.add(new BasicNameValuePair("selected_by","USER"));
+		list.add(new BasicNameValuePair("lat",lat));
+		list.add(new BasicNameValuePair("lat",lng));		
+		
+		String params = URLEncodedUtils.format(list, "utf-8");
+
+		String url = String.format("%sv3/cab/info?%s", baseUrl, params);
+
+		CustomStringRequest request = new CustomStringRequest(url, new Listener<String>() {
+
+			@Override
+			public void onResponse(String response) {
+				try {
+					RidesResponse reponse = mapper.readValue(response, RidesResponse.class);
+					listener.onSuccess(reponse);
+				}catch (Exception e) {
+					listener.onFailure(e.getMessage());
+				}
+			}
+		}, new ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				listener.onFailure(error.getMessage());
+			}
+		});
+
+		restClient.addToRequestQueue(request);
+		
+	}
+	
+	@Override
 	public void getPlaces(String type, String location, String radius,
 			final HttpJsonListener<PlacesResponse> listener) {
 
@@ -172,5 +213,4 @@ public class RestUtils extends AbstractRestUtils {
 
 		restClient.addToRequestQueue(request);
 	}
-
 }
