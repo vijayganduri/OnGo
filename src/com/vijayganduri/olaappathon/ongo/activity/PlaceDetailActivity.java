@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
+import com.makeramen.RoundedImageView;
 import com.vijayganduri.olaappathon.ongo.AppConstants;
 import com.vijayganduri.olaappathon.ongo.R;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
@@ -18,6 +20,7 @@ public class PlaceDetailActivity extends BaseActivity{
 
 	private static final String TAG = PlaceDetailActivity.class.getSimpleName();
 	
+	private RoundedImageView img;
 	private TextView title;
 	private TextView description;
 	private Place place;
@@ -32,7 +35,8 @@ public class PlaceDetailActivity extends BaseActivity{
 	
 		title = (TextView)findViewById(R.id.item_title);
 		description = (TextView)findViewById(R.id.item_description);
-
+		img = (RoundedImageView)findViewById(R.id.place_img);
+		
 		if(getIntent()!=null && getIntent().getSerializableExtra(AppConstants.INTENT_PLACE_INFO)!=null){
 			place = (Place) getIntent().getSerializableExtra(AppConstants.INTENT_PLACE_INFO);
 		}else if(savedInstanceState!=null && savedInstanceState.getSerializable(AppConstants.INTENT_PLACE_INFO)!=null){
@@ -46,6 +50,7 @@ public class PlaceDetailActivity extends BaseActivity{
 		
 		title.setText(place.getName());
 		description.setText(place.getVicinity());
+		restUtils.setImageUrl(img,place);
 	}	
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -11,7 +11,7 @@ public interface AppConstants {
 	
 	public static final String OLA_DEV_BASE_URL= "http://mapi.olacabs.com/";
 	public static final String GOOGLE_PLACES_BASE_URL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-
+	public static final String GOOGLE_PLACES_PHOTO_BASE_URL= "https://maps.googleapis.com/maps/api/place/photo?";
 	
 	//API KEYS
 	public static final String BUGSENSE_KEY= "0ce351f9";
