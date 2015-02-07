@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text_soft_black">#3d3b37</color>
+
+    <!-- Home Screen -->
+    <color name="list_bg">#ffffff</color>
+    <color name="item_bg">#ffffff</color>
+    <color name="item_swipe_bg_color">#CDDC39</color>
+    <color name="list_divider">#fafafa</color>
+    <color name="action_item_bg_pressed">#55ffffff</color>
+    
+    <color name="progress_dialog">#aa000000</color>
+    <color name="progress_dialog_text">#fafafa</color>
+
+    <color name="color_primary_dark">#303F9F</color><!-- Statusbar -->
+    <color name="color_primary">#3F51B5</color> <!-- actionbar -->
+    
+    <color name="color_accent">#009688</color> <!-- tint on widgets-->
+    
+    <color name="color_primary_text">#212121</color>
+    <color name="color_secondary_text">#727272</color>
+    
+    <color name="white">#fafafa</color>
+    
+    <color name="fab_accent">#009688</color>
+    <color name="fab_accent_pressed">#006057</color>
+    
+</resources>

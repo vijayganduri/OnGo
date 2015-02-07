@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OnGo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+        <!-- fonts -->
+    <string name="font_bold">Roboto-Bold.ttf</string>
+    <string name="font_light">Roboto-Light.ttf</string>
+    <string name="font_regular">Roboto-Regular.ttf</string>
+    <string name="font_thin">Roboto-Thin.ttf</string>
+    
+    
+</resources>
