@@ -19,6 +19,7 @@ public class PlaceDetailActivity extends BaseActivity{
 	private static final String TAG = PlaceDetailActivity.class.getSimpleName();
 	
 	private TextView title;
+	private TextView description;
 	private Place place;
 	
 	@Override
@@ -30,6 +31,7 @@ public class PlaceDetailActivity extends BaseActivity{
 		setupToolbar();	
 	
 		title = (TextView)findViewById(R.id.item_title);
+		description = (TextView)findViewById(R.id.item_description);
 
 		if(getIntent()!=null && getIntent().getSerializableExtra(AppConstants.INTENT_PLACE_INFO)!=null){
 			place = (Place) getIntent().getSerializableExtra(AppConstants.INTENT_PLACE_INFO);
@@ -43,6 +45,7 @@ public class PlaceDetailActivity extends BaseActivity{
 		}
 		
 		title.setText(place.getName());
+		description.setText(place.getVicinity());
 	}	
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)

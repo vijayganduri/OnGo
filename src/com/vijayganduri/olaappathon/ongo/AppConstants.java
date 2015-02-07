@@ -14,8 +14,7 @@ public interface AppConstants {
 
 	
 	//API KEYS
-	public static final String LOCALYTICS_KEY= "abc";
-	public static final String CRITTERICISM_KEY= "xyz";
+	public static final String BUGSENSE_KEY= "0ce351f9";
 	
 	public static final String GOOGLE_PLACES_KEY= "AIzaSyBYri6lZvgfvao4nU7oE60sEv7JVHMVhVw";
 		
