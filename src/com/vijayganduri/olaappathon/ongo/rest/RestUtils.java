@@ -7,6 +7,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -18,6 +19,7 @@ import com.makeramen.RoundedImageView;
 import com.vijayganduri.olaappathon.ongo.AppConstants;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.PlacesResponse;
+import com.vijayganduri.olaappathon.ongo.model.CabInfoResponse;
 import com.vijayganduri.olaappathon.ongo.model.LoginResponse;
 import com.vijayganduri.olaappathon.ongo.model.RidesResponse;
 import com.vijayganduri.utils.PasswordEncrypt;
@@ -137,7 +139,7 @@ public class RestUtils extends AbstractRestUtils {
 
 	@Override
 	public void getCabInfo(String userid, String lat, String lng,
-			final HttpJsonListener<RidesResponse> listener) {
+			final HttpJsonListener<CabInfoResponse> listener) {
 
 		List<BasicNameValuePair> list = new ArrayList<BasicNameValuePair>();
 		list.add(new BasicNameValuePair("user_id", userid));
@@ -158,7 +160,7 @@ public class RestUtils extends AbstractRestUtils {
 			@Override
 			public void onResponse(String response) {
 				try {
-					RidesResponse reponse = mapper.readValue(response, RidesResponse.class);
+					CabInfoResponse reponse = mapper.readValue(response, CabInfoResponse.class);
 					listener.onSuccess(reponse);
 				}catch (Exception e) {
 					listener.onFailure(e.getMessage());
@@ -168,6 +170,7 @@ public class RestUtils extends AbstractRestUtils {
 
 			@Override
 			public void onErrorResponse(VolleyError error) {
+				Log.d(TAG, "err:"+error);
 				listener.onFailure(error.getMessage());
 			}
 		});

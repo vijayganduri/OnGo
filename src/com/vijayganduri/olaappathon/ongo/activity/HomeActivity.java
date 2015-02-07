@@ -24,7 +24,7 @@ import com.vijayganduri.olaappathon.ongo.R;
 import com.vijayganduri.olaappathon.ongo.adapter.PlacesListAdapter;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.PlacesResponse;
-import com.vijayganduri.olaappathon.ongo.model.RidesResponse;
+import com.vijayganduri.olaappathon.ongo.model.CabInfoResponse;
 import com.vijayganduri.olaappathon.ongo.rest.HttpJsonListener;
 import com.vijayganduri.utils.PreferencesUtils;
 
@@ -103,11 +103,12 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 	}
 	
 	private void getNearbyCabInfo(){
-		restUtils.getCabInfo(userId, "17.487136", "78.388187", new HttpJsonListener<RidesResponse>() {
+		restUtils.getCabInfo(userId, "17.487136", "78.388187", new HttpJsonListener<CabInfoResponse>() {
 
 			@Override
-			public void onSuccess(RidesResponse response) {
-				
+			public void onSuccess(CabInfoResponse response) {
+				Log.d(TAG, "response "+response);
+				updateCabAvailabiltyData(response);
 			}
 
 			@Override
@@ -115,6 +116,10 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 				Log.e(TAG, error);
 			}
 		});
+	}
+	
+	private void updateCabAvailabiltyData(CabInfoResponse response){
+		
 	}
 
 	@Override

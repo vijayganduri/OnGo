@@ -1,8 +1,10 @@
 package com.vijayganduri.olaappathon.ongo.model;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Ride {
+public class Ride  implements Serializable{
 
 	private String id;
 	private long crn;

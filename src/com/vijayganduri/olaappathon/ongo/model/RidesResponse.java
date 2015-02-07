@@ -1,8 +1,10 @@
 package com.vijayganduri.olaappathon.ongo.model;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RidesResponse {
+public class RidesResponse  implements Serializable{
 
 	private String status;
 	

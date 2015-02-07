@@ -1,8 +1,9 @@
 package com.vijayganduri.olaappathon.ongo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RidesLists {
+public class RidesLists  implements Serializable{
 
 	private List<Ride> all;
 	private List<Ride> upcoming;
