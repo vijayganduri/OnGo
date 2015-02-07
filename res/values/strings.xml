@@ -3,8 +3,12 @@
 
     <string name="app_name">OnGo</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_filter">Filter</string>
 
+    <string name="login">LOGIN</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    
         <!-- fonts -->
     <string name="font_bold">Roboto-Bold.ttf</string>
     <string name="font_light">Roboto-Light.ttf</string>
