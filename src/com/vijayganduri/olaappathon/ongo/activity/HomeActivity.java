@@ -1,6 +1,7 @@
 package com.vijayganduri.olaappathon.ongo.activity;
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -13,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.vijayganduri.olaappathon.ongo.AppConstants;
@@ -47,6 +51,7 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 	private TextView autoKms;
 	private TextView autoeat;
 
+	private Button bookBtn;
 	private String userId;
 
 	@Override
@@ -63,6 +68,8 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 		cabeat = (TextView)findViewById(R.id.cab_eat);
 		autoKms = (TextView)findViewById(R.id.auto_kms);
 		autoeat = (TextView)findViewById(R.id.auto_eat);
+		
+		bookBtn = (Button)findViewById(R.id.book);
 
 		listview = (ListView)findViewById(R.id.listview);
 		listview.setOnItemClickListener(this);
@@ -77,6 +84,20 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
 		getplaces();
 		getNearbyCabInfo();
+		
+		bookBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				try{
+					Intent intent = new Intent(Intent.ACTION_MAIN);
+					intent.setComponent(new ComponentName("com.olacabs.customer","com.olacabs.customer.ui.SplashActivity"));
+					startActivity(intent);
+				}catch(Exception e){
+					Toast.makeText(HomeActivity.this, "Couldn't launch Ola app", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 	}
 
 	private void getplaces(){

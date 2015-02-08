@@ -55,6 +55,39 @@
 
     <include layout="@layout/transparent_main_toolbar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_section"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp" >
+
+        <com.vijayganduri.utils.CustomFontTextView
+            android:id="@+id/cabs_found"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="Total Cabs Found"
+            android:textColor="@color/color_primary_text"
+            android:textSize="25sp"
+            app:customTypeface="@string/font_regular" />
+
+        <com.vijayganduri.utils.CustomFontTextView
+            android:id="@+id/nearest_cab"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingTop="10dp"
+            android:text="Nearest cab is.."
+            android:textColor="@color/color_primary_text"
+            android:textSize="20sp"
+            app:customTypeface="@string/font_light" />
+    </LinearLayout>
 
     <com.vijayganduri.utils.CustomFontButton
         android:id="@+id/book"
