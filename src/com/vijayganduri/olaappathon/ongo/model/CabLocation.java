@@ -8,9 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class CabLocation  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5571707778968609063L;
 	private String id;
-	private float lat;
-	private float lng;
+	private double lat;
+	private double lng;
 
 	@JsonProperty("category_id")
 	private String category_id;
@@ -23,19 +27,19 @@ public class CabLocation  implements Serializable{
 		this.id = id;
 	}
 
-	public float getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(float lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
-	public float getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLng(float lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 

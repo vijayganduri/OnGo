@@ -22,7 +22,7 @@ public class CabInfoResponse implements Serializable{
 	@JsonProperty("cab_categories")
 	private List<CabCategory> cabCategories;
 	
-   	//private List<CabLocation> cabs;
+	private List<CabLocation> cabs;
 
 	public String getStatus() {
 		return status;
@@ -30,6 +30,14 @@ public class CabInfoResponse implements Serializable{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<CabLocation> getCabs() {
+		return cabs;
+	}
+
+	public void setCabs(List<CabLocation> cabs) {
+		this.cabs = cabs;
 	}
 
 	public String getRequestType() {
@@ -48,12 +56,11 @@ public class CabInfoResponse implements Serializable{
 		this.cabCategories = cabCategories;
 	}
 
-
 	@Override
 	public String toString() {
 		return "CabInfoResponse [status=" + status + ", requestType="
-				+ requestType + ", cabCategories=" + cabCategories + "]";
+				+ requestType + ", cabCategories=" + cabCategories + ", cabs="
+				+ cabs + "]";
 	}
-   	
 
 }

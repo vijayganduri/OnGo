@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Duration implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3692181609609106554L;
 	private String unit;
 	private int value;
 	

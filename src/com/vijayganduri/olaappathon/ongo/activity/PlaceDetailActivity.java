@@ -15,6 +15,7 @@ import com.makeramen.RoundedImageView;
 import com.vijayganduri.olaappathon.ongo.AppConstants;
 import com.vijayganduri.olaappathon.ongo.R;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
+import com.vijayganduri.olaappathon.ongo.model.CabInfoResponse;
 
 public class PlaceDetailActivity extends BaseActivity{
 
@@ -24,6 +25,7 @@ public class PlaceDetailActivity extends BaseActivity{
 	private TextView title;
 	private TextView description;
 	private Place place;
+	private CabInfoResponse cabResponse;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,11 @@ public class PlaceDetailActivity extends BaseActivity{
 			place = (Place) getIntent().getSerializableExtra(AppConstants.INTENT_PLACE_INFO);
 		}else if(savedInstanceState!=null && savedInstanceState.getSerializable(AppConstants.INTENT_PLACE_INFO)!=null){
 			place = (Place) savedInstanceState.getSerializable(AppConstants.INTENT_PLACE_INFO);
+		}
+		if(getIntent()!=null && getIntent().getSerializableExtra(AppConstants.INTENT_CAB_INFO)!=null){
+			cabResponse = (CabInfoResponse) getIntent().getSerializableExtra(AppConstants.INTENT_CAB_INFO);
+		}else if(savedInstanceState!=null && savedInstanceState.getSerializable(AppConstants.INTENT_CAB_INFO)!=null){
+			cabResponse = (CabInfoResponse) savedInstanceState.getSerializable(AppConstants.INTENT_CAB_INFO);
 		}
 		
 		if(place==null){

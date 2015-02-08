@@ -2,14 +2,16 @@ package com.vijayganduri.olaappathon.ongo.model;
 
 import java.io.Serializable;
 
-import javax.xml.datatype.Duration;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class CabCategory implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7159015368368358456L;
 	private String id;
 	private boolean cab_availability;
 	private Duration duration;

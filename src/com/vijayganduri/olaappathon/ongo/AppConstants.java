@@ -7,6 +7,7 @@ public interface AppConstants {
 	public static final String PREFS_USER_ID = "com.ola.userid";
 
 	public static final String INTENT_PLACE_INFO = "com.ola.userid.place.info";
+	public static final String INTENT_CAB_INFO = "com.ola.userid.cab.info";
 	
 	
 	public static final String OLA_DEV_BASE_URL= "http://mapi.olacabs.com/";

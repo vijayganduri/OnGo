@@ -24,6 +24,7 @@ import com.vijayganduri.olaappathon.ongo.R;
 import com.vijayganduri.olaappathon.ongo.adapter.PlacesListAdapter;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.Place;
 import com.vijayganduri.olaappathon.ongo.googleplaces.model.PlacesResponse;
+import com.vijayganduri.olaappathon.ongo.model.CabCategory;
 import com.vijayganduri.olaappathon.ongo.model.CabInfoResponse;
 import com.vijayganduri.olaappathon.ongo.rest.HttpJsonListener;
 import com.vijayganduri.utils.PreferencesUtils;
@@ -37,14 +38,15 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
 	private ListView listview;
 	private PlacesListAdapter adapter;
-	
+	private CabInfoResponse cabResponse;
+
 	private TextView sedanKms;
 	private TextView sedaneat;
 	private TextView cabKms;
 	private TextView cabeat;
 	private TextView autoKms;
 	private TextView autoeat;
-	
+
 	private String userId;
 
 	@Override
@@ -54,17 +56,17 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
 		setupStatusBar();
 		setupToolbar();	
-		
+
 		sedanKms = (TextView)findViewById(R.id.sedan_kms);
 		sedaneat = (TextView)findViewById(R.id.sedan_eat);
 		cabKms = (TextView)findViewById(R.id.cab_kms);
 		cabeat = (TextView)findViewById(R.id.cab_eat);
 		autoKms = (TextView)findViewById(R.id.auto_kms);
 		autoeat = (TextView)findViewById(R.id.auto_eat);
-		
+
 		listview = (ListView)findViewById(R.id.listview);
 		listview.setOnItemClickListener(this);
-		
+
 		userId = PreferencesUtils.getUserID(this);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -86,7 +88,8 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 
 		listview.setAdapter(swingBottomInAnimationAdapter);
 
-		restUtils.getPlaces("restaurant", "17.48,78.38", "3000", new HttpJsonListener<PlacesResponse>() {
+		//Hardcoding location to EGL
+		restUtils.getPlaces("art_gallery|museum|restaurant|meal_takeaway|movie_theater", "12.949097,77.644295", "10000", new HttpJsonListener<PlacesResponse>() {
 
 			@Override
 			public void onSuccess(PlacesResponse response) {
@@ -101,13 +104,12 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 			}
 		});
 	}
-	
+
 	private void getNearbyCabInfo(){
-		restUtils.getCabInfo(userId, "17.487136", "78.388187", new HttpJsonListener<CabInfoResponse>() {
+		restUtils.getCabInfo(userId, "12.949097", "77.644295", new HttpJsonListener<CabInfoResponse>() {
 
 			@Override
 			public void onSuccess(CabInfoResponse response) {
-				Log.d(TAG, "response "+response);
 				updateCabAvailabiltyData(response);
 			}
 
@@ -117,9 +119,35 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 			}
 		});
 	}
-	
+
 	private void updateCabAvailabiltyData(CabInfoResponse response){
-		
+		this.cabResponse = response;
+		if(response!=null && response.getCabCategories()!=null && response.getCabCategories().size()>0){
+			for(CabCategory category : response.getCabCategories()){
+				if("economy_sedan".equals(category.getId())){
+					if(category.getDuration()!=null){//TODO optimise this
+						sedaneat.setText(String.format("%s %s",category.getDuration().getValue(), category.getDuration().getUnit()));
+					}
+					if(category.getDistance()!=null){
+						sedanKms.setText(String.format("%s %s",category.getDistance().getValue(), category.getDistance().getUnit()));
+					}
+				}else if ("local_auto".equals(category.getId())){
+					if(category.getDuration()!=null){
+						autoeat.setText(String.format("%s %s",category.getDuration().getValue(), category.getDuration().getUnit()));
+					}
+					if(category.getDistance()!=null){
+						autoKms.setText(String.format("%s %s",category.getDistance().getValue(), category.getDistance().getUnit()));
+					}
+				}else if ("compact".equals(category.getId())){
+					if(category.getDuration()!=null){
+						cabeat.setText(String.format("%s %s",category.getDuration().getValue(), category.getDuration().getUnit()));
+					}
+					if(category.getDistance()!=null){
+						cabKms.setText(String.format("%s %s",category.getDistance().getValue(), category.getDistance().getUnit()));
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -151,7 +179,7 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
+
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void setupStatusBar(){
@@ -175,6 +203,7 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener{
 		Place item = adapter.getItem(position);
 		Intent intent = new Intent(this, PlaceDetailActivity.class);
 		intent.putExtra(AppConstants.INTENT_PLACE_INFO,item);
+		intent.putExtra(AppConstants.INTENT_CAB_INFO,cabResponse);
 		startActivity(intent);
 	}
 

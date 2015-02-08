@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Distance implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7818194504456600942L;
 	private String unit;
 	private int value;
 	

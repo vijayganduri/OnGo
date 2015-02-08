@@ -143,22 +143,24 @@ public class RestUtils extends AbstractRestUtils {
 
 		List<BasicNameValuePair> list = new ArrayList<BasicNameValuePair>();
 		list.add(new BasicNameValuePair("user_id", userid));
-		list.add(new BasicNameValuePair("enable_new_state","true"));
 		list.add(new BasicNameValuePair("enable_auto","true"));
 		list.add(new BasicNameValuePair("enable_marketing","true"));
+
+		list.add(new BasicNameValuePair("enable_new_state","true"));
 		list.add(new BasicNameValuePair("location_type","CUSTOM"));
 		list.add(new BasicNameValuePair("selected_by","USER"));
 		list.add(new BasicNameValuePair("lat",lat));
-		list.add(new BasicNameValuePair("lat",lng));		
+		list.add(new BasicNameValuePair("lng",lng));
 		
 		String params = URLEncodedUtils.format(list, "utf-8");
 
 		String url = String.format("%sv3/cab/info?%s", baseUrl, params);
-
+		
 		CustomStringRequest request = new CustomStringRequest(url, new Listener<String>() {
 
 			@Override
 			public void onResponse(String response) {
+				Log.d(TAG, "response "+response);
 				try {
 					CabInfoResponse reponse = mapper.readValue(response, CabInfoResponse.class);
 					listener.onSuccess(reponse);
